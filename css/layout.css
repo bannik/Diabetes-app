@@ -1,0 +1,19 @@
+body{
+	margin:0;
+	padding:0;
+}
+#menu{
+	float:left;
+	width:80px;
+	height:100%;
+}
+#menu li {
+}
+#universe {
+    width:100%;
+    background-color: #fff;
+    z-index: 5;
+    position: fixed;
+    left: 0px;
+    height: 100%;
+}

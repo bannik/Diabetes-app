@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Diabetes Application</title>
+	
+    <script type="text/javascript" src="js/jquery/jquery-1.8.3.min.js"></script>
+    
+</head>
+<body>
+   
+    <div id="pageWrapper" style="clear:both;">
+		<iframe src="app.html" id="appFrame" style="border:10px solid #ECD672;float:left;"></iframe>
+		
+		<div id="deviceModal" style="margin-left:50px;float:left;">
+	 		<ul id="devList" style="list-style:none;">
+				<li>
+					<label for="devSize">Device</label>
+					<select id="devSize">
+						<option value="320,480" data-type="iPhone" selected="selected">iPhone 3, 3GS, 4, 4S (320x480)</option>
+						<option value="320,480" data-type="Android">Android (320x480)</option>
+						<option value="480,800" data-type="AndroidWVGA800">Android WVGA800 (480x800)</option>
+						<option value="480,800" data-type="WindowsWVGA800">Windows Phone WVGA800 (480x800)</option>
+						<option value="540,960" data-type="AndroidQHD">Android QHD (540x960)</option>								
+						<option value="640,1136" data-type="iPhone5">iPhone 5 (640x1136)</option>
+						<option value="768,1024" data-type="iPad">iPad 1,2 (768x1024)</option>
+						<option value="800,1280" data-type="AndroidTab">Android Tablet (800x1280)</option>
+						<option value="custom" data-type="custom">Custom Display Size</option>
+					</select>
+				</li>
+				<li>
+					<label for="devOrientation">Page Orientation</label>
+					<select id="devOrientation">
+						<option value="portrait" selected="selected">Portrait</option>
+					  	<option value="landscape">Landscape</option>
+					</select>
+				<li>
+				<li>
+					<button class="btn btn-primary" id="modalOK">OK</button>
+				</li>
+			</ul>   
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		
+		function scaleLayout(){
+			var w, h ;
+			var dim = $('#devSize option:selected').val().split(',');
+			var orient = $('#devOrientation option:selected').val();
+			console.log(dim);
+			console.log(orient);
+			if(orient != 'landscape'){ w = dim[0]; h = dim[1];
+			}else{ w= dim[1]; h = dim[0]; }
+
+			//Set Appplication screen
+			$('#appFrame').animate(400, function(){
+				$(this).css('width', w).css('height', h);
+			});
+		}
+
+		$('#devSize option[data-type="iPhone"]').attr('selected', 'selected');
+		$('#devOrientation option[value="portrait"]').attr('selected', 'selected');
+		
+		$('#modalOK').click(function(){
+			scaleLayout();
+		});
+		scaleLayout();
+    </script>
+
+</body>
+</html>
